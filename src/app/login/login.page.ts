@@ -1,12 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { createAnimation} from '@ionic/angular';
+import { FormControl,FormGroup,Validators   } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
+
 export class LoginPage {
+  value = 'nriedeldj';
+  token = 'token1234';
+
+  usuario = new FormGroup({
+    user: new FormControl('',[Validators.required, Validators.minLength(4),Validators.maxLength(9)]),
+    pass: new FormControl('',[Validators.required, Validators.minLength(4),Validators.maxLength(9)]),
+  });
 
   constructor() { }
 
@@ -24,5 +33,8 @@ export class LoginPage {
     animation.play();
   }
 
+  loginUser() {
+    console.log('test');
+  }
 
 }
