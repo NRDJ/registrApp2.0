@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -9,7 +10,7 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'login',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'login',
@@ -22,11 +23,13 @@ const routes: Routes = [
   },
   {
     path: 'qr-docente',
-    loadChildren: () => import('./qr-docente/qr-docente.module').then( m => m.QrDocentePageModule)
+    loadChildren: () => import('./qr-docente/qr-docente.module').then( m => m.QrDocentePageModule),
+    canLoad: [AuthGuard]
   },
   {
     path: 'qr-alumno',
-    loadChildren: () => import('./qr-alumno/qr-alumno.module').then( m => m.QrAlumnoPageModule)
+    loadChildren: () => import('./qr-alumno/qr-alumno.module').then( m => m.QrAlumnoPageModule),
+    canLoad: [AuthGuard]
   },
 ];
 

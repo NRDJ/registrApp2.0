@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { AuthGuard } from './auth-guard.service';
 
 describe('AuthGuard', () => {
@@ -10,7 +9,9 @@ describe('AuthGuard', () => {
     service = TestBed.inject(AuthGuard);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('should allowed logged user to access page', () => {
+    service.canLoad().subscribe(isAllowed => {
+      expect(isAllowed).toBeTruthy();
+    });
   });
 });
