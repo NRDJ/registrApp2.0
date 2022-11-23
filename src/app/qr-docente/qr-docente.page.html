@@ -7,18 +7,19 @@
 
 <ion-content>
 <div class="container">
-  <!-- <h1>{{userDocente}}</h1>  (click) ="qrCode()"-->
+  <h1>{{userDocente}}</h1>
   <h6>Haz click en el botón para iniciar el proceso de asistencia en línea</h6>
-  <ion-button type="submit" expand="block" >Generar código QR</ion-button>
+  <ion-button type="submit" expand="block" (click) ="qrCode()" >Generar código QR</ion-button>
 </div>
 
-<div id="new">
-</div>
 
-<!-- <ngx-qrcode *ngIf="generateQrCode" style="text-align:center"
+<ngx-qrcode
+  *ngIf="generateQrCode"
+  style="text-align:center"
   [elementType]="elementType"
+  [errorCorrectionLevel]="correctionLevel"
   [value]="value"
-  cssClass="aclass"
-  errorCorrectionLevel="L">
-</ngx-qrcode> -->
+  alt="Demo QR Code">
+</ngx-qrcode>
+
 </ion-content>
