@@ -6,20 +6,17 @@
 </ion-header>
 
 <ion-content style="text-align: center;">
-<div class="container">
-  <h1>userAlumno</h1>
-  <h6>Haz click en el botón para registrar tu asistencia</h6>
-  <!-- <ion-button (click)="startScan()">Escanear code qr</ion-button> -->
-  <ion-button expand="full" (click)="scan()">Escanear code qr</ion-button>
+  <div class="container">
+    <h1>userAlumno</h1>
+    <h6>Haz click en el botón para registrar tu asistencia</h6>
+    <!-- <ion-button (click)="startScan()">Escanear code qr</ion-button> -->
+    <!-- <ion-button expand="full" (click)="scan()">Escanear code qr</ion-button> -->
 
-  <!-- <ion-content>
-    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-      <ion-fab-button (click)="addPhotoToGallery()">
+    <ion-fab (click)="scan()" vertical="bottom" horizontal="center" slot="fixed">
+      <ion-fab-button>
         <ion-icon name="camera"></ion-icon>
       </ion-fab-button>
     </ion-fab>
-  </ion-content> -->
-</div>
-
+  </div>
 
 </ion-content>

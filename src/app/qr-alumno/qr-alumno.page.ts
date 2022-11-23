@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PhotoService } from '../services/photo.service';
 
 @Component({
   selector: 'app-qr-alumno',
@@ -7,13 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QrAlumnoPage implements OnInit {
 
-  constructor() { }
+  constructor(public photoService: PhotoService) { }
 
   ngOnInit() {
   }
 
   scan() {
-    console.log('scanear codigo qr');
+    console.log('scan method working');
+    this.photoService.openCamera();
   }
+
+
 
 }
