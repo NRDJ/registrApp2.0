@@ -43,8 +43,23 @@ export class AuthenticationService {
         this.router.navigate(['qr-docente'],navigationExtras);
         this.authState.next(true);
         console.log(user);
+    });
+    }else if (user === 'alumno'){
+      console.log(user);
+      const navigationExtras: NavigationExtras = {
+        state: {
+          userId: '1235',
+          userName: 'Joaquín Lagos',
+          message: 'Bienvenido'
+        }
+      };
+      console.log(user);
+      this.storage.set('USER_INFO', navigationExtras).then((response) => {
+        this.router.navigate(['qr-alumno'],navigationExtras);
+        this.authState.next(true);
+        console.log(user);
       });
-    }else{
+    } else{
       const navigationExtrasNOK: NavigationExtras = {
         state: {
           userId: '',

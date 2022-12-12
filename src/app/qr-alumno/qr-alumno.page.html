@@ -1,22 +1,24 @@
 <ion-header>
-  <ion-title>Bienvenido Alumno</ion-title>
 <ion-toolbar>
   <ion-title>RegistrApp</ion-title>
 </ion-toolbar>
 </ion-header>
 
 <ion-content style="text-align: center;">
-  <div class="container">
-    <h1>userAlumno</h1>
-    <h6>Haz click en el botón para registrar tu asistencia</h6>
-    <!-- <ion-button (click)="startScan()">Escanear code qr</ion-button> -->
-    <!-- <ion-button expand="full" (click)="scan()">Escanear code qr</ion-button> -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Bievenido {{userAlumno}}</ion-card-title>
+      <ion-card-subtitle>Haz click en el botón para registrar tu asistencia</ion-card-subtitle>
+    </ion-card-header>
 
-    <ion-fab (click)="scan()" vertical="bottom" horizontal="center" slot="fixed">
-      <ion-fab-button>
-        <ion-icon name="camera"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-  </div>
+    <ion-card-content>
+
+    </ion-card-content>
+  </ion-card>
+  <ion-fab (click)="scan()" vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>

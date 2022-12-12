@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { VERSION } from '@angular/core';
 import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
+import { ConsumoApiService } from '../consumo-api.service';
 
 @Component({
   selector: 'app-qr-docente',
@@ -17,8 +18,9 @@ export class QrDocentePage implements OnInit {
   value = 'https://www.techiediaries.com/';
   generateQrCode = false;
   userDocente = '';
+  tituloUno: any;
 
-  constructor(public navCtrl: NavController, private activeroute: ActivatedRoute,
+  constructor(private consumoApi: ConsumoApiService, public navCtrl: NavController, private activeroute: ActivatedRoute,
     private router: Router) {
 
     this.activeroute.queryParams.subscribe(params => {
@@ -34,6 +36,33 @@ export class QrDocentePage implements OnInit {
 
   qrCode() {
     this.generateQrCode = true;
+    this.imprimir();
   }
+
+  //Metodo para mostrar
+  imprimir(){
+    //this.presentAlert();
+    this.consumoApi.getPosts().subscribe((res)=>{
+      this.tituloUno = '' + res.data[0].Name;
+      console.log(res.data[0].Name);
+    }, (error)=>{
+      console.log(error);
+
+    });
+
+  }
+
+  // imprimir(){
+  //   //this.presentAlert();
+  //   this.consumoApi.getPosts().subscribe((res)=>{
+  //     console.log('RES:');
+  //     console.log(res.data[0].Name);
+
+  //   }, (error)=>{
+  //     console.log(error);
+
+  //   });
+
+  // }
 
 }
