@@ -1,16 +1,59 @@
 <ion-header>
-  <ion-title>Docente!</ion-title>
 <ion-toolbar>
   <ion-title>RegistrApp</ion-title>
 </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<div class="container">
-  <h1>{{userDocente}}</h1>
-  <h6>Haz click en el botón para iniciar el proceso de asistencia en línea</h6>
-  <ion-button type="submit" expand="block" (click) ="qrCode()" >Generar código QR</ion-button>
-</div>
+
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Bienvenido {{userDocente}}</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    Selecciona la información indicada abajo y luego presiona el botón para generar código QR e iniciar el proceso de asistencia en línea.
+  </ion-card-content>
+
+</ion-card>
+
+<ion-card>
+
+  <ion-card-header>
+    <ion-card-title>Seleccionar asignatura</ion-card-title>
+  </ion-card-header>
+
+  <ion-list>
+    <ion-item>
+      <ion-select placeholder="Selecciona asignatura">
+        <ion-select-option value="psicologiaSoftware1">Psicología del Software I</ion-select-option>
+        <ion-select-option value="desarrolloMotivacional1">Desarrollo Motivacional I</ion-select-option>
+        <ion-select-option value="gestionFelicidad1">Gestion de la Felicidad I</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+</ion-card>
+
+<ion-card>
+
+  <ion-card-header>
+    <ion-card-title>Seleccionar horario</ion-card-title>
+  </ion-card-header>
+
+  <ion-list>
+    <ion-item>
+      <ion-select placeholder="Selecciona horario">
+        <ion-select-option value="lunes8AM">Lunes 8:00 AM</ion-select-option>
+        <ion-select-option value="miercoles14PM">Miercoles 14:00 PM</ion-select-option>
+        <ion-select-option value="viernes9AM">Viernes 9:00 AM</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+</ion-card>
+<ion-button type="submit" expand="block" (click) ="qrCode()" >Generar código QR</ion-button>
 
 
 <ngx-qrcode

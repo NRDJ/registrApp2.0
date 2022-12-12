@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { createAnimation} from '@ionic/angular';
-import { FormBuilder, FormControl,FormGroup,Validators   } from '@angular/forms';
-import { Router } from '@angular/router';
-import { LoginPageForm } from './login.page.form';
+import { Component } from '@angular/core';
+import { AlertController,NavController,AnimationController,createAnimation} from '@ionic/angular';
+import { FormControl,FormGroup,Validators   } from '@angular/forms';
+import { Router, NavigationExtras } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -10,21 +10,19 @@ import { LoginPageForm } from './login.page.form';
   styleUrls: ['./login.page.scss'],
 })
 
-export class LoginPage implements OnInit {
-  // value = 'nriedeldj';
-  // token = 'token1234';
+export class LoginPage {
+  value = 'nriedel';
 
-  // usuario = new FormGroup({
-  //   user: new FormControl('',[Validators.required, Validators.minLength(4),Validators.maxLength(9)]),
-  //   pass: new FormControl('',[Validators.required, Validators.minLength(4),Validators.maxLength(9)]),
-  // });
+  usuario = new FormGroup({
+    user: new FormControl('',[Validators.required, Validators.minLength(4),Validators.maxLength(8)]),
+    pass: new FormControl('',[Validators.required, Validators.minLength(4),Validators.maxLength(4)]),
+  });
 
-  form: FormGroup;
-
-  constructor(private router: Router, private formBuilder: FormBuilder) { }
-
-  ngOnInit() {
-    this.form = new LoginPageForm(this.formBuilder).createForm();
+  constructor(private authService: AuthenticationService,
+    private navCtrl: NavController,
+    private router: Router,
+    private alertController: AlertController,
+    private animationCtrl: AnimationController) {
   }
 
   ionViewDidEnter(){
@@ -41,8 +39,44 @@ export class LoginPage implements OnInit {
     animation.play();
   }
 
-  loginUser() {
-    this.router.navigate(['/qr-docente']);
+  sendDetailsWithState() {
+    const navigationExtras: NavigationExtras = {
+      state: {user: this.usuario.value.user}
+      };
+      this.router.navigate(['/home'],navigationExtras); // Esta linea es la que me permite navegar a otro page
   }
+
+  loginUser() {
+    if ((this.usuario.value.user.trim()!=='') && ((this.usuario.value.pass.trim()!==''))){
+      this.authService.login(this.usuario.value.user, this.usuario.value.pass);
+    }
+  }
+
+  //Metodo para navegar desde un metodo llamado desde el html
+  goToPagina2(){
+    console.log('entramos al metodo');
+    if('nriedel' === this.usuario.value.user){
+      this.sendDetailsWithState();
+    }else{
+      this.presentAlert();
+    }
+    // this.navCtrl.navigateForward('/home');
+  }
+
+
+    //Metodo de alerta
+    async presentAlert(){
+      const alert = await this.alertController.create({
+        header: 'Error Login',
+        subHeader: 'Infomación : ',
+        message: 'Usuario o contraseña son incorrecto',
+        buttons: ['Aceptar'],
+      });
+      await alert.present();
+    }
+
+  // loginUser() {
+  //   this.router.navigate(['/qr-docente']);
+  // }
 
 }
